@@ -1,7 +1,7 @@
 // Model router. Single source of truth for all model strings.
 //
 // CURRENT routing — updated June 2026
-//   conversation_complex: claude-fable-5   (coaching agent — Fable 5 for reasoning depth)
+//   conversation_complex: claude-opus-4-8  (coaching agent — Opus 4.8 for reasoning depth)
 //   default:              claude-sonnet-4-6 (all other AI calls)
 //
 // FORCE_MODEL env var overrides both — use for testing all functions on Haiku:
@@ -10,7 +10,7 @@
 const forceModel = Deno.env.get("FORCE_MODEL");
 
 export const MODELS = {
-  conversation_complex: forceModel ?? "claude-fable-5",
+  conversation_complex: forceModel ?? "claude-opus-4-8",
   default: forceModel ?? "claude-sonnet-4-6",
 } as const;
 

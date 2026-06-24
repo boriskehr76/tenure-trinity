@@ -100,8 +100,6 @@ const MODELS = {
 
 Do not hardcode model strings anywhere else. Always import from `_shared/models.ts`.
 
-**If this file in the real repo still says `claude-fable-5`, fix it before anything else in this document — that's a live bug, not a documentation issue.**
-
 ---
 
 ## Opus 4.8 prompting rules — conversation Edge Function only
