@@ -1,0 +1,9 @@
+.DS_Store
+BorisKehr_CV.md
+
+# excluded pending review — unclear what these are yet
+trinity-next/
+trinity.html
+
+# Supabase CLI cache — not source code
+supabase/.temp/

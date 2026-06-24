@@ -1,0 +1,367 @@
+# PRD: Tenure — Candidate Identity Engine (MVP)
+Mode: UX
+Date: June 1, 2026
+Status: Draft
+
+---
+
+## 1. One-Line Value Prop
+
+A conversational hiring agent that builds a verified professional identity
+profile for designers — replacing personality tests with evidence-backed
+conversations that candidates actually trust.
+
+---
+
+## 2. Problem Statement (Jobs-to-be-Done)
+
+What job is the candidate hiring this for?
+To be seen accurately — not just as a CV, but as a whole professional
+with specific conditions for performing well.
+
+What job is the company hiring this for?
+To understand culture and working-style fit before the first interview,
+without adding another personality test to the process.
+
+Functional job (candidate): Build a profile that reflects who I actually
+am and how I work — and use it to find roles where I'll thrive.
+
+Emotional job (candidate): Feel understood, not evaluated. Feel like the
+profile is mine, not something done to me.
+
+Social job (candidate): Show up to interviews already partially known —
+so the conversation starts at a more honest level.
+
+Functional job (company): Get a working-style and values signal on
+candidates before investing in interviews.
+
+Emotional job (company): Trust that the signal is real, not gamed.
+
+Current alternatives and why they fall short:
+
+- DISC / Big Five: Forces binary answers onto conditional questions.
+  Output is abstract and hard to act on. Candidates don't trust it
+  because they can't verify what it's measuring.
+
+- CV + portfolio: Hard skills only. No working style, no values,
+  no conditions for performance.
+
+- Cover letters: Self-reported, heavily coached, gameable. Companies
+  know this and discount accordingly.
+
+- First interview: The right data finally emerges — but it costs both
+  sides 45 minutes to get there, and it's too late in the funnel to
+  filter on fit.
+
+---
+
+## 3. Target User
+
+Primary user: Mid-to-senior designer (UX, product, UI) actively
+looking for a new role or open to opportunities. Frustrated with
+the current hiring process. Has been ghosted, over-tested, or
+mismatched before.
+
+Secondary user: Hiring manager or talent lead at a design-forward
+company (20–200 people) who needs to filter candidates on culture
+and working style, not just craft level.
+
+User archetypes:
+
+**Archetype 1 — The Mismatched Senior**
+Name: Sara
+Context: 8 years experience, strong portfolio, keeps landing in
+environments that don't suit how she works. Good at interviews,
+bad at predicting fit.
+Frustration: "I do well in the process and then fail in the job.
+Nobody asks the right questions upfront."
+Success looks like: A profile that surfaces her conditions for
+performance — so she stops accepting roles that look right on paper
+but aren't.
+
+**Archetype 2 — The Aspiring Lead**
+Name: Marcus
+Context: 5 years as senior IC, wants to move into a lead role.
+Not sure if his skills match his aspiration. Applying to lead
+roles and getting filtered out early.
+Frustration: "I don't know what the gap actually is. Nobody tells me."
+Success looks like: A profile that shows his current level clearly,
+his aspiration explicitly, and the gap between them — so he knows
+what to work on and companies know what they're getting.
+
+---
+
+## 4. User Stories
+
+Must-have stories (Sprint 1):
+
+1. As a candidate, I want to have a conversation with the agent
+   about how I work — so that my profile reflects something truer
+   than my CV.
+
+2. As a candidate, I want to see my profile diagram after the
+   conversation — so I can verify it feels accurate before any
+   company sees it.
+
+3. As a candidate, I want to correct or add nuance to what the
+   agent read from my answers — so the profile is mine, not
+   the agent's interpretation of me.
+
+Nice-to-have stories (later):
+
+4. As a candidate, I want the agent to ask me about a specific
+   job I saved — so the conversation stays relevant to what I'm
+   actually pursuing.
+
+5. As a company, I want to see a fit score against a candidate
+   profile — without seeing the raw profile data — so I can
+   prioritise who to interview.
+
+---
+
+## 5. Feature Priority (MoSCoW)
+
+MUST have (Sprint 1):
+
+- Conversational agent with 4 founding questions (structured
+  but flexible — not a form)
+- 5-axis spider diagram generated from conversation
+- Candidate-facing diagram view with "does this feel accurate?"
+  validation prompt
+- Ability for candidate to flag an axis as inaccurate and add
+  a correction in their own words
+- Conversation continuity — agent remembers prior sessions and
+  builds on them
+
+SHOULD have (Sprint 2):
+
+- Trigger-based conversation starters (job upload → agent asks
+  "what made you save this?")
+- Aspiration layer on hard skills axis (current vs. dotted-line
+  aspiration)
+- Range view on each axis (baseline + peak + floor) once enough
+  data collected
+- Contradiction surfacing — agent gently flags when evidence
+  conflicts with self-report
+
+COULD have (backlog):
+
+- Company-side profile and automated match score
+- Longitudinal view showing how profile evolves over time
+- Integration with portfolio/case study uploads to ground claims
+  in evidence
+- Gap analysis report for aspiration vs. current level
+- Agent-initiated check-ins when candidate hasn't logged in
+  (e.g. "did the search go quiet?")
+
+WON'T have (explicitly out of scope for MVP):
+
+- Any DISC / Big Five framework labels or scores —
+  this is not a personality test
+- Company-visible raw profile data — companies never see
+  the underlying answers, only fit signals
+- Automated job matching algorithm — matching is manual
+  in Sprint 1
+- Mobile app — web only for MVP
+- Public candidate profiles
+
+---
+
+## 6. UX Considerations
+
+Key flows:
+
+1. **First conversation**
+   Entry: candidate completes basic profile setup →
+   Agent opens with "Tell me about a project you're genuinely
+   proud of — not the most impressive, the one that felt right" →
+   Agent follows up on working conditions, not output →
+   Session ends with 2–3 axes partially populated →
+   Candidate sees partial diagram with "come back to complete"
+   prompt.
+
+2. **Diagram validation**
+   Entry: enough data collected for first full diagram →
+   Agent shows diagram and asks "does this feel accurate?" →
+   Candidate reviews axis by axis →
+   Flags anything that feels off →
+   Agent asks for evidence to update the reading →
+   Profile locks with candidate's confirmation.
+
+3. **Contradiction handling**
+   Entry: agent detects conflict between self-report and
+   evidence from prior conversation →
+   Agent surfaces it without judgment: "You mentioned earlier
+   you prefer autonomy, but the project you just described
+   sounds deeply collaborative — how do you think about that?" →
+   Candidate explains →
+   Agent updates range, not point — notes both ends of the
+   spectrum as real data →
+   Profile reflects the range, not a resolved midpoint.
+
+Design principles:
+
+1. **Claims require evidence, gently.** Every self-reported trait
+   gets one follow-up anchored to a specific moment. Not as a
+   challenge — as curiosity. "Tell me about a time when..." is
+   the default move.
+
+2. **No wrong answers. Only conditions.** Every axis and every
+   answer gets framed as what this person needs to perform well —
+   never as a deficit. Narrow range = specific conditions needed,
+   not a flaw.
+
+3. **The profile belongs to the candidate.** They see it first.
+   They validate it. They can correct it. Nothing goes to
+   companies without their understanding of what's being shared.
+
+Open UX questions (validate before or during build):
+
+- What is the drop-off point in the first conversation?
+  After Q1, Q2, or Q3? This determines how long the opening
+  session can be.
+
+- When candidates see their diagram for the first time, which
+  axes do they push back on most? This reveals where self-report
+  diverges from evidence most reliably.
+
+- Do candidates want to see their own range (low/high) or does
+  it feel too exposing at MVP stage? May need to gate the range
+  view behind a trust-building period.
+
+- Will companies engage with a fit signal if they can't see the
+  underlying data? This is the biggest unknown on the company side
+  and needs a manual pilot before any automated matching is built.
+
+---
+
+## 7. Technical Constraints
+
+Auth needed: Yes — candidate profiles are private by default,
+company access is gated.
+
+Data storage: Structured conversation history per candidate.
+Axis scores stored as ranges (min / baseline / max) not single
+values — even if only baseline is shown in V1. Schema must
+support range from day one.
+
+APIs / integrations:
+- LLM API for conversational agent (Claude Sonnet for
+  conversations, Opus for complex contradiction detection)
+- Supabase for candidate profile storage (schema-compatible
+  with broader Tenure database)
+- No third-party personality test APIs — by design
+
+Deployment target: Web
+
+Known complexity risks:
+- Conversation continuity across sessions is technically
+  non-trivial — agent needs to recall and reference prior
+  answers accurately without hallucinating context
+- Axis scoring from unstructured conversation requires
+  reliable extraction logic — this is where the MVP is
+  most likely to produce inaccurate profiles
+- Company-side trust in a fit signal they can't interrogate
+  is a product risk, not just a technical one
+
+---
+
+## 8. Sprint 1 Definition
+
+This is the only thing that ships first. Everything else is later.
+
+What Sprint 1 includes:
+
+- Conversational agent with the 4 founding questions,
+  delivered as natural conversation not a form
+- 5-axis spider diagram generated from conversation output
+- Candidate-facing diagram view with validation prompt
+- Simple correction mechanism — candidate flags an axis,
+  writes a correction, agent acknowledges and updates
+- Session memory — agent opens subsequent conversations
+  with a reference to what was discussed before
+- Manual matching backend — Boris reviews profiles and
+  matches manually, no algorithm
+
+What Sprint 1 explicitly excludes:
+
+- Company-facing interface of any kind
+- Automated match scoring
+- Aspiration / dotted-line layer
+- Range view (axis shows single baseline point only)
+- Job-trigger conversations
+- Any integration with external job boards or ATS
+
+Sprint 1 is done when: 5 real candidates complete the full
+conversation, see their diagram, validate it as accurate,
+and at least 4 of 5 say the profile reflects something
+true that their CV doesn't capture.
+
+---
+
+## 9. Success Metrics
+
+Quantitative:
+
+- Conversation completion rate: target >60% of candidates
+  who start the first session complete all 4 questions
+- Diagram accuracy rate: target >70% of candidates say
+  "yes, this feels accurate" on first view
+- Return rate: target >50% of candidates return for a
+  second session within 7 days
+
+Qualitative:
+
+- Candidates describe the conversation as feeling different
+  from a personality test — specifically: less evaluative,
+  more like being understood
+- At least one candidate says something like "this surfaced
+  something I hadn't articulated before"
+- Companies in manual pilot find the profile adds signal
+  beyond the CV when making interview decisions
+
+---
+
+## 10. Tool Recommendation
+
+Recommended: Stitch → Lovable
+Why: The candidate-facing conversation and diagram are
+design-critical — the tone and feel of the interface
+determines whether candidates trust the process. Stitch
+for UX exploration and flow validation before committing
+to build. Lovable for the React frontend with Supabase
+backend, which stays schema-compatible with the broader
+Tenure database.
+Workflow: Stitch (conversation flow + diagram design) →
+Lovable (build) → Supabase (profile storage)
+Watch out for: The conversational agent logic is too
+complex for Lovable alone — the LLM integration and
+session memory will need Claude Code for the backend
+conversation handling.
+
+Alternative if conversation logic becomes the primary
+complexity: Replit for full-stack control over the agent
+logic, with Lovable handling only the frontend UI layer.
+
+---
+
+## Open Questions
+
+1. How does the agent handle a candidate who gives only
+   short, guarded answers? Is there a minimum data threshold
+   before a diagram is generated, or does a thin profile
+   surface as explicitly incomplete?
+
+2. What happens when a candidate's profile shifts significantly
+   over time — does the old data get archived, weighted down,
+   or replaced? The range model helps but needs a defined policy.
+
+3. Company trust in the fit signal without seeing raw data —
+   this needs a manual pilot with 2–3 companies before Sprint 2
+   builds anything on the company side. Do not build company
+   features until this is validated.
+
+4. Tenure is not named publicly yet. The candidate-facing
+   product in Sprint 1 should be testable without a public
+   brand — consider whether this runs as an invite-only
+   prototype under a neutral name during validation.
